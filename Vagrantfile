@@ -53,16 +53,20 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "shell", inline: "sudo mkdir -p /srv/salt"
 
-  config.vm.synced_folder "salt", "/srv/salt/"
-  config.vm.synced_folder "config", "/srv/salt/"
+  #config.vm.synced_folder "states", "/srv/salt/"
+  #config.vm.synced_folder "config", "/etc/salt/"
 
-  #config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
+  config.vm.provision "file", source: "states/top.sls", destination: "~/top.sls"
+  config.vm.provision "file", source: "states/docker.sls", destination: "~/docker.sls"
+  config.vm.provision "file", source: "states/jenkins.sls", destination: "~/jenkins.sls"
+
+  config.vm.provision "shell", inline: "sudo cp /home/vagrant/*.sls /srv/salt/"
 
   ## Use all the defaults:
   config.vm.provision :salt do |salt|
 
     salt.masterless = true
-  #  salt.minion_config = "salt/minion"
+    salt.minion_config = "config/minion"
     salt.run_highstate = true
 
   end
