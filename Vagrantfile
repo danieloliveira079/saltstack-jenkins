@@ -51,8 +51,12 @@ Vagrant.configure(2) do |config|
     vb.memory = "4096"
   end
 
+  config.vm.provision "shell", inline: "sudo mkdir -p /srv/salt"
+
   config.vm.synced_folder "salt", "/srv/salt/"
-  config.vm.synced_folder "config", "/etc/salt/"
+  config.vm.synced_folder "config", "/srv/salt/"
+
+  #config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
 
   ## Use all the defaults:
   config.vm.provision :salt do |salt|
