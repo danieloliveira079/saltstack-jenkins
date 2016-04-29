@@ -88,6 +88,7 @@ Vagrant.configure(2) do |config|
      sudo apt-get update
      sudo apt-get install -y python-pip
      sudo pip install docker-py
+     sudo salt-call --local state.highstate -l debug
    SHELL
 
   ## For masterless, mount your salt file root
