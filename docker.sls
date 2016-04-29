@@ -1,22 +1,3 @@
-python-pip:
-  pkg.removed
-python-pip-whl:
-  pkg.removed
-
-pip-install:
-  cmd.run:
-    - name: easy_install pip
-
-dockerpy:
-  pip.installed:
-    - name: docker-py >=1.6.0
-    - require:
-      - pkg: python-pip
-      - pkg: python-pip-whl
-      - pkg: docker-package
-      - cmd: pip-install
-    - reload_modules: True
-
 purge-old-packages:
   pkgrepo.absent:
     - name: deb https://get.docker.com/ubuntu docker main
