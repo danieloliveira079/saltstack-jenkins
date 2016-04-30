@@ -52,21 +52,21 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision "shell", inline: "sudo mkdir -p /srv/salt"
-
-  #config.vm.synced_folder "states", "/srv/salt/"
-  #config.vm.synced_folder "config", "/etc/salt/"
+  config.vm.provision "shell", inline: "sudo mkdir -p /etc/salt"
 
   config.vm.provision "file", source: "states/top.sls", destination: "~/top.sls"
   config.vm.provision "file", source: "states/docker.sls", destination: "~/docker.sls"
   config.vm.provision "file", source: "states/jenkins.sls", destination: "~/jenkins.sls"
+  config.vm.provision "file", source: "config/minion", destination: "~/minion"
 
   config.vm.provision "shell", inline: "sudo cp /home/vagrant/*.sls /srv/salt/"
+  config.vm.provision "shell", inline: "sudo cp /home/vagrant/minion /etc/salt/minion"
 
   ## Use all the defaults:
   config.vm.provision :salt do |salt|
 
     salt.masterless = true
-    salt.minion_config = "config/minion"
+    #salt.minion_config = "config/minion"
     salt.run_highstate = true
 
   end
@@ -88,7 +88,7 @@ Vagrant.configure(2) do |config|
      sudo apt-get update
      sudo apt-get install -y python-pip
      sudo pip install docker-py
-     sudo salt-call --local state.highstate -l debug
+     #sudo salt-call --local state.highstate -l debug
    SHELL
 
   ## For masterless, mount your salt file root
