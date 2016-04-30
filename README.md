@@ -56,11 +56,11 @@ As part of the Salt lifecycle VMs (minions) can be managed by applying states. T
 - Docker: Install the docker engine and all its dependencies
 - Jenkins: Download the Jenkins image built specific for this projetc and start the container
 
-Even though they are just 2 steps, there is a lot of data to be downloaded consequently this process will take some time to get done. Meanwhile you can read the Salt documentation just in case your are not pretty well familiar with it.
+Even though they are just 2 steps, there is a lot of data to be downloaded consequently this process will take some time to get done. Meanwhile you can read the Salt documentation just in case your are not much familiar with it.
 
 ## Start building
 
-As soo as the previous steps get completed all you have to do is to point your browser to [http://192.168.99.101:8080](http://192.168.99.101:8080) and login using the following credentials:
+As soon as the previous steps get completed all you have to do is to point your browser to [http://192.168.99.101:8080](http://192.168.99.101:8080) and login using the following credentials:
 
 Login: operations
 Password: local12.
